@@ -53,7 +53,7 @@ export default {
     },
   },
   async mounted () {
-    const { data: details } = await this.$axios.get(`https://raw.githubusercontent.com/EpicData-info/items-tracker/master/database/items/${this.$route.params.id}.json`);
+    const { data: details } = await this.$axios.get(`https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/EpicData-info/items-tracker/master/database/items/${this.$route.params.id}.json`);
     this.details = details;
   },
 }

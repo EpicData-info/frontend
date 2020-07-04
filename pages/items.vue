@@ -111,7 +111,7 @@ export default {
     },
   },
   async mounted () {
-    const { data } = await this.$axios.get('https://raw.githubusercontent.com/EpicData-info/items-tracker/master/database/list.json');
+    const { data } = await this.$axios.get('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/EpicData-info/items-tracker/master/database/list.json');
     this.items = data;
   },
 }
