@@ -10,11 +10,17 @@
       :sort-desc.sync="sortDesc"
       @row-clicked="onRowClicked"
     >
+      <template v-slot:cell(1)="row">
+        <b-link href="#" @click.prevent="filter('ns', row.value)">{{ row.value }}</b-link>
+      </template>
       <template v-slot:cell(3)="row">
         <template v-if="row.value">
           <span v-for="(category, categoryIndex) in row.value" :key="category">{{ category }}{{ categoryIndex < row.value.length - 1 ? ', ' : '' }}</span>
         </template>
         <template v-else>-</template>
+      </template>
+      <template v-slot:cell(4)="row">
+        <b-link href="#" @click.prevent="filter('developer', row.value)">{{ row.value }}</b-link>
       </template>
     </b-table>
     <div class="overflow-auto">
@@ -84,6 +90,9 @@ export default {
           if (this.$route.query.developer && item[4].toLowerCase().indexOf(this.$route.query.developer.toLowerCase()) === -1) {
             return false;
           }
+          if (this.$route.query.ns && item[1] !== this.$route.query.ns) {
+            return false;
+          }
           return item[2].toLowerCase().indexOf(searchQuery) > -1;
         })
         .sort((a, b) => {
@@ -108,6 +117,15 @@ export default {
     onRowClicked (row) {
       const itemId = row[0];
       this.$router.push(`/item/${itemId}`);
+    },
+    filter (filterBy, filterValue) {
+      this.$router.push({
+        path: this.$route.path,
+        query: {
+          ...this.$route.query,
+          [filterBy]: filterValue,
+        },
+      });
     },
   },
   async mounted () {
