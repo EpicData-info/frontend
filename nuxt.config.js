@@ -29,6 +29,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/google-analytics',
+    '@/plugins/google-ads',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -44,6 +46,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
   ],
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
