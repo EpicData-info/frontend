@@ -1,3 +1,4 @@
+import Axios from 'axios';
 
 export default {
   mode: 'spa',
@@ -58,5 +59,28 @@ export default {
     */
     extend (config, ctx) {
     }
-  }
+  },
+
+  generate: {
+    async routes () {
+      const routes = [];
+      routes.push(
+        ...await Axios.get('https://raw.githubusercontent.com/EpicData-info/offers-tracker/master/database/list.json')
+        .then(({ data }) => {
+          return data.map((offer) => {
+            return `/offer/${offer[0]}`;
+          });
+        })
+      );
+      routes.push(
+        ...await Axios.get('https://raw.githubusercontent.com/EpicData-info/items-tracker/master/database/list.json')
+        .then(({ data }) => {
+          return data.map((item) => {
+            return `/item/${item[0]}`;
+          });
+        })
+      );
+      return routes;
+    }
+  },
 }
