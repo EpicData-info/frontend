@@ -1,0 +1,134 @@
+{
+  "US": {
+    "currency": "USD"
+  },
+  "PL": {
+    "currency": "PLN"
+  },
+  "RU": {
+    "currency": "RUB"
+  },
+  "ID": {
+    "currency": "USD"
+  },
+  "CN": {
+    "currency": "USD"
+  },
+  "AD": {
+    "currency": "EUR"
+  },
+  "AU": {
+    "currency": "AUD"
+  },
+  "BE": {
+    "currency": "EUR"
+  },
+  "CH": {
+    "currency": "EUR"
+  },
+  "DK": {
+    "currency": "DKK"
+  },
+  "FR": {
+    "currency": "EUR"
+  },
+  "IE": {
+    "currency": "EUR"
+  },
+  "IT": {
+    "currency": "EUR"
+  },
+  "JP": {
+    "currency": "JPY"
+  },
+  "NO": {
+    "currency": "NOK"
+  },
+  "DE": {
+    "currency": "EUR"
+  },
+  "ES": {
+    "currency": "EUR"
+  },
+  "IL": {
+    "currency": "USD"
+  },
+  "MC": {
+    "currency": "EUR"
+  },
+  "MX": {
+    "currency": "USD"
+  },
+  "PR": {
+    "currency": "USD"
+  },
+  "VA": {
+    "currency": "EUR"
+  },
+  "BR": {
+    "currency": "BRL"
+  },
+  "TR": {
+    "currency": "TRY"
+  },
+  "CZ": {
+    "currency": "EUR"
+  },
+  "LV": {
+    "currency": "EUR"
+  },
+  "FI": {
+    "currency": "EUR"
+  },
+  "NL": {
+    "currency": "EUR"
+  },
+  "CA": {
+    "currency": "CAD"
+  },
+  "KR": {
+    "currency": "KRW"
+  },
+  "LT": {
+    "currency": "EUR"
+  },
+  "PT": {
+    "currency": "EUR"
+  },
+  "SE": {
+    "currency": "SEK"
+  },
+  "AE": {
+    "currency": "USD"
+  },
+  "AT": {
+    "currency": "EUR"
+  },
+  "CY": {
+    "currency": "EUR"
+  },
+  "LU": {
+    "currency": "EUR"
+  },
+  "MT": {
+    "currency": "EUR"
+  },
+  "SA": {
+    "currency": "USD"
+  },
+  "SI": {
+    "currency": "EUR"
+  },
+  "SK": {
+    "currency": "EUR"
+  },
+  "BY": {
+    "currency": "RUB"
+  },
+  "UA": {
+    "currency": "UAH"
+  },
+  "EE": {
+    "currency": "EUR"
+  }
+}

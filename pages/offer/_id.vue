@@ -19,6 +19,7 @@
     </b-container>
     <h2>Price History</h2>
     <PriceChart
+      ref="priceChart"
       :options="priceChartOptions"
       :chartData="priceChartData"
     />
@@ -71,7 +72,7 @@ export default {
 						},
 						scaleLabel: {
 							display: true,
-							labelString: 'Date',
+              labelString: 'Date',
 						},
 					}],
 					yAxes: [{
@@ -80,7 +81,28 @@ export default {
 							labelString: 'value',
 						},
 					}],
-				},
+        },
+        legend: {
+          onClick: async (event, legendItem) => {
+            const chart = this.$refs.priceChart.$data._chart;
+            const legendItemIndex = legendItem.datasetIndex;
+            const legendItemMeta = chart.getDatasetMeta(legendItemIndex);
+            legendItemMeta.hidden = legendItemMeta.hidden === null ? !chart.data.datasets[legendItemIndex].hidden : null;
+            chart.update();
+            if (legendItemMeta.data.length > 0) return;
+            const dataset = this.priceChartData.datasets.find(dataset => dataset.label === legendItem.text);
+            this.$set(dataset, 'data', await this.fetchPriceHistoryForCountry(legendItem.text));
+            chart.update();
+          },
+        },
+        tooltips: {
+          callbacks: {
+            label: (tooltipItem, data) => {
+              const currency = this.$store.getters.getCurrency(this.$store.getters.getCountry(data.datasets[tooltipItem.datasetIndex].label).currency);
+              return `${tooltipItem.yLabel.toFixed(currency.decimals)} ${currency.code}`;
+            },
+          },
+        },
       },
     };
   },
@@ -89,25 +111,35 @@ export default {
       return JSON.stringify(this.details, null, 2);
     },
   },
+  methods: {
+    async fetchPriceHistoryForCountry (country) {
+      const currency = this.$store.getters.getCurrency(this.$store.getters.getCountry(country).currency);
+      const { data: pricesHistory } = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/prices-history/${country}/${this.$route.params.id}.json`);
+      return pricesHistory.map((row) => {
+        return {
+          x: new Date(row[0]),
+          y: row[1] / Math.pow(10, currency.decimals),
+        };
+      });
+    }
+  },
   async mounted () {
     const { data: details } = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/offers-tracker/master/database/offers/${this.$route.params.id}.json`);
     this.details = details;
+    await this.$store.dispatch('fetchCurrencies');
     try {
-      let { data: pricesHistory } = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/prices-history/US/${this.$route.params.id}.json`);
-      pricesHistory = pricesHistory.map((row) => {
-        return {
-          x: new Date(row[0]),
-          y: row[1] / 100,
-        };
-      });
+      const defaultCountry = 'US';
+      const pricesHistory = await this.fetchPriceHistoryForCountry(defaultCountry);
       this.priceChartData = {
-        datasets: [
-          {
-            label: 'USD',
+        datasets: this.$store.getters.getCountriesList.map((country, countryIndex) => {
+          return {
+            label: country,
             fill: false,
-            data: pricesHistory,
-          },
-        ],
+            borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+            data: country === defaultCountry && pricesHistory || [],
+            hidden: country !== defaultCountry,
+          };
+        }),
       };
       const dayFormat = 'YYYY-MM-DD';
       if (pricesHistory.length > 0 && Moment(pricesHistory[0].x).format(dayFormat) !== Moment.format(dayFormat)) {
