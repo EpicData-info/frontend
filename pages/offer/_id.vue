@@ -90,10 +90,10 @@ export default {
     },
   },
   async mounted () {
-    const { data: details } = await this.$axios.get(`https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/EpicData-info/offers-tracker/master/database/offers/${this.$route.params.id}.json`);
+    const { data: details } = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/offers-tracker/master/database/offers/${this.$route.params.id}.json`);
     this.details = details;
     try {
-      let { data: pricesHistory } = await this.$axios.get(`https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/prices-history/US/${this.$route.params.id}.json`);
+      let { data: pricesHistory } = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/prices-history/US/${this.$route.params.id}.json`);
       pricesHistory = pricesHistory.map((row) => {
         return {
           x: new Date(row[0]),
