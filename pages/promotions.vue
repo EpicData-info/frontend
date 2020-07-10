@@ -129,26 +129,30 @@ export default {
       }
     },
     async load () {
-      const currency = this.$store.getters.getCountry(this.country).currency;
-      await this.$store.dispatch('fetchCurrencies');
-      const { data: titles } = await this.$axios.get('https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/offers-tracker/master/database/titles.json');
-      const { data: promotionsData } = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/promotions/${this.country}.json`);
-      this.currency = this.$store.getters.getCurrency(currency);
-      const items = Object.keys(promotionsData)
-        .map((offerId) => {
-          return [
-            offerId,
-            ...Object.values(promotionsData[offerId]),
-            titles[offerId],
-          ];
-        });
-      items
-        .map(item => `${item[1]}${item[2]}${item[3]}${item[4]}`)
-        .forEach((title, titleIndex, self) => {
-          if (self.indexOf(title) === titleIndex) return;
-          items[titleIndex] = null;
-        });
-      this.items = items.filter(item => item);
+      try {
+        const currency = this.$store.getters.getCountry(this.country).currency;
+        await this.$store.dispatch('fetchCurrencies');
+        const { data: titles } = await this.$axios.get('https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/offers-tracker/master/database/titles.json');
+        const { data: promotionsData } = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/promotions/${this.country}.json`);
+        this.currency = this.$store.getters.getCurrency(currency);
+        const items = Object.keys(promotionsData)
+          .map((offerId) => {
+            return [
+              offerId,
+              ...Object.values(promotionsData[offerId]),
+              titles[offerId],
+            ];
+          });
+        items
+          .map(item => `${item[1]}${item[2]}${item[3]}${item[4]}`)
+          .forEach((title, titleIndex, self) => {
+            if (self.indexOf(title) === titleIndex) return;
+            items[titleIndex] = null;
+          });
+        this.items = items.filter(item => item);
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
   async mounted () {
