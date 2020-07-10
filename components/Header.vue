@@ -10,6 +10,7 @@
           <b-nav-item href="/items">Items</b-nav-item>
           <b-nav-item href="/offers">Offers</b-nav-item>
           <b-nav-item href="/offers?category=games&sortBy=5">New Games</b-nav-item>
+          <b-nav-item href="/promotions">Promotions</b-nav-item>
           <b-nav-item href="https://github.com/EpicData-info" target="_blank">Github</b-nav-item>
         </b-navbar-nav>
 
