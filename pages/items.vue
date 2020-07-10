@@ -30,6 +30,7 @@
         :per-page="perPage"
         aria-controls="MainTable"
         align="center"
+        @change="onPaginationChange"
       ></b-pagination>
     </div>
   </main>
@@ -117,6 +118,9 @@ export default {
     onRowClicked (row) {
       const itemId = row[0];
       this.$router.push(`/item/${itemId}`);
+    },
+    onPaginationChange () {
+      window.scrollTo(0, 0);
     },
     filter (filterBy, filterValue) {
       this.$router.push({
