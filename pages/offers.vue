@@ -10,6 +10,18 @@
       :sort-desc.sync="sortDesc"
       @row-clicked="onRowClicked"
     >
+      <template v-slot:bottom-row>
+        <b-td colspan="7" style="padding:0;border-bottom:1px solid #dee2e6;border-top:none">
+          <ins
+            class="adsbygoogle"
+            style="display:block"
+            data-ad-format="fluid"
+            data-ad-layout-key="-gn-28-5b-b0+1nb"
+            data-ad-client="ca-pub-6726404296831661"
+            data-ad-slot="3803459231">
+          </ins>
+        </b-td>
+      </template>
       <template v-slot:cell(1)="row">
         <b-link href="#" @click.prevent="filter('ns', row.value)">{{ row.value }}</b-link>
       </template>
