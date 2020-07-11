@@ -6,6 +6,7 @@
       <b-button variant="primary" to="/offers?category=games&sortBy=5">New Games</b-button>
       <b-button variant="primary" to="/promotions">Promotions</b-button>
       <b-button variant="success" :href="this.$store.state.donateUrl" target="_blank">Donate</b-button>
+      <b-button variant="primary" href="https://discord.gg/Y2pymKn" target="_blank">Discord</b-button>
       <b-button href="https://github.com/EpicData-info" target="_blank">Github</b-button>
     </b-jumbotron>
     <b-container>
