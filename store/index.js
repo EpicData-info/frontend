@@ -40,7 +40,7 @@ export const actions = {
     if (state.currencies) {
       return;
     }
-    const { data: currencies } = await this.$axios.get('https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/currencies.json');
+    const { data: currencies } = await this.$axios.get('https://raw.githubusercontent.com/EpicData-info/prices-tracker/master/database/currencies.json');
     commit('SET_CURRENCIES', currencies);
   },
 }
