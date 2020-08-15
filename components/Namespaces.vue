@@ -56,7 +56,7 @@
       }
     },
     async mounted() {
-      const {data} = await this.$axios.get(`https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/EpicData-info/${this.type}s-tracker/master/database/namespaces.json`);
+      const {data} = await this.$axios.get(`https://raw.githubusercontent.com/EpicData-info/${this.type}s-tracker/master/database/namespaces.json`);
       this.namespaceJSON = data;
       this.show = false;
 
