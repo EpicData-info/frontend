@@ -2,9 +2,7 @@
   <main class="container">
     <b-jumbotron header="EpicData.info" lead="EpicGames Store data tracker." style="margin:2rem 0">
       <b-button variant="primary" to="/items">Items</b-button>
-      <b-button variant="primary" to="/item_namespaces">Item Namespaces</b-button>
       <b-button variant="primary" to="/offers">Offers</b-button>
-      <b-button variant="primary" to="/offer_namespaces">Offer Namespaces</b-button>
       <b-button variant="primary" to="/offers?category=games&sortBy=5">New Games</b-button>
       <b-button variant="primary" to="/promotions">Promotions</b-button>
       <b-button variant="success" :href="this.$store.state.donateUrl" target="_blank">Donate</b-button>
