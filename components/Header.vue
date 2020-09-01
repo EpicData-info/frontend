@@ -8,7 +8,9 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="/items">Items</b-nav-item>
+          <b-nav-item href="/item_namespaces">Item Namespaces</b-nav-item>
           <b-nav-item href="/offers">Offers</b-nav-item>
+          <b-nav-item href="/offer_namespaces">Offer Namespaces</b-nav-item>
           <b-nav-item href="/offers?category=games&sortBy=5">New Games</b-nav-item>
           <b-nav-item to="/promotions">Promotions</b-nav-item>
           <b-nav-item href="https://github.com/EpicData-info" target="_blank">Github</b-nav-item>
