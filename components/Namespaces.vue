@@ -8,7 +8,7 @@
 
       <!-- Main content -->
       <div class="namespace-list" role="tablist">
-        <b-card no-body class="mb-1" v-for="namespace in namespaces">
+        <b-card no-body class="mb-1" v-for="namespace in namespaces" :key="namespace">
           <b-card-header header-tag="header" class="p-1" role="tab">
             <b-button block v-b-toggle="'accordion-'+namespace" variant="info">
               {{namespace}}
@@ -16,7 +16,7 @@
           </b-card-header>
           <b-collapse :id="'accordion-'+ namespace" accordion="my-accordion" role="tabpanel">
             <b-card-body class="id-list">
-              <b-link :href="getLinkFor(id)" v-for="id in getIDsFrom(namespace)">
+              <b-link :href="getLinkFor(id)" target="_blank" v-for="id in getIDsFrom(namespace)" :key="id">
                 {{id}}
               </b-link>
             </b-card-body>
