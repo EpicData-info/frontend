@@ -6,14 +6,9 @@
     <b-container fluid>
       <b-row>
         <b-col sm="12">
-          <b-form-textarea
-            id="textarea-auto-height"
-            placeholder="Auto height textarea"
-            rows="3"
-            max-rows="100"
-            readonly
-            v-model="stringifiedDetails"
-          ></b-form-textarea>
+          <json-view
+            :data="details"
+            class="chevronStyle"/>
         </b-col>
       </b-row>
     </b-container>
@@ -40,21 +35,26 @@
 </template>
 
 <script>
+
+import {JSONView} from 'vue-json-component';
+
 export default {
-  data () {
+  components: {'json-view': JSONView},
+  data() {
     return {
       slide: 0,
       details: {},
     };
   },
-  computed: {
-    stringifiedDetails () {
-      return JSON.stringify(this.details, null, 2);
-    },
-  },
-  async mounted () {
-    const { data: details } = await this.$axios.get(`https://raw.githubusercontent.com/EpicData-info/items-tracker/master/database/items/${this.$route.params.id}.json`);
+  async mounted() {
+    const {data: details} = await this.$axios.get(`https://raw.githubusercontent.com/EpicData-info/items-tracker/master/database/items/${this.$route.params.id}.json`);
     this.details = details;
   },
 }
 </script>
+
+<style scoped>
+.chevronStyle {
+  --vjc-arrow-size: 10px !important;
+}
+</style>
