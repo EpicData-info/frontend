@@ -16,7 +16,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "chart.js": "^2.9.3",
     "moment": "^2.27.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.14.6",
     "vue-chartjs": "^3.5.0",
     "vue-json-component": "^0.4.1"
   },
