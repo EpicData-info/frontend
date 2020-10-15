@@ -6,14 +6,9 @@
     <b-container fluid>
       <b-row>
         <b-col sm="12">
-          <b-form-textarea
-            id="textarea-auto-height"
-            placeholder="Auto height textarea"
-            rows="3"
-            max-rows="100"
-            readonly
-            v-model="stringifiedDetails"
-          ></b-form-textarea>
+          <json-view
+            :data="details"
+            class="chevronStyle"/>
         </b-col>
       </b-row>
     </b-container>
@@ -48,9 +43,11 @@
 <script>
 import Moment from 'moment';
 import PriceChart from '@/components/PriceChart';
+import {JSONView} from 'vue-json-component';
 
 export default {
   components: {
+    'json-view': JSONView,
     PriceChart,
   },
   data () {
@@ -152,3 +149,8 @@ export default {
   },
 }
 </script>
+<style scoped>
+.chevronStyle {
+  --vjc-arrow-size: 10px !important;
+}
+</style>
